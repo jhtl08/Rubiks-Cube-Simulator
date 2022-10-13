@@ -3,4 +3,17 @@
 //ENGG 31-N
 //October 13, 2022
 
-#pragma once //probably change this depending on what's needed for the project idk
+#ifndef RUBIKSCUBE_H
+#define RUBIKSCUBE_H
+
+class rubikscube
+{
+  private:
+    //arrays to be used for the faces of the rubiks cube (I think)
+};
+
+
+
+
+
+#endif
