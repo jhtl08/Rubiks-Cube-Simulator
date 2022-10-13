@@ -6,11 +6,35 @@
 #ifndef RUBIKSCUBE_H
 #define RUBIKSCUBE_H
 
-class rubikscube
+#include <iostream>
+
+class Face
 {
   private:
-    //arrays to be used for the faces of the rubiks cube (I think)
+    std::string* sideFace = new std::string[13];
+  
+  public:
+    //default constructor
+    Face();
+
+    //constructor with parameter
+    Face(char color);
+
+    void printFace();
 };
+
+class RubiksCube
+{
+  private:
+    Face up, down, left, right, front, back;
+
+  public:
+    //default constructor
+    RubiksCube();
+
+    void printCube();
+};
+
 
 
 
