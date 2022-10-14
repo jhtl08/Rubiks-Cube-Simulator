@@ -9,6 +9,6 @@ using namespace std;
 
 int main()
 {
-  RubiksCube rCube;
+  RubiksCube rCube=RubiksCube();
   rCube.printCube();
 }
