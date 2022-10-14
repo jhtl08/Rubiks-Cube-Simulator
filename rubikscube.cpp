@@ -80,15 +80,15 @@ void RubiksCube::printCube()
   four_face_template[562]=right[2][1];
   four_face_template[566]=right[2][2];
 
-  four_face_template[147]=down[0][0];
-  four_face_template[151]=down[0][1];
-  four_face_template[155]=down[0][2];
-  four_face_template[359]=down[1][0];
-  four_face_template[363]=down[1][1];
-  four_face_template[367]=down[1][2];
-  four_face_template[571]=down[2][0];
-  four_face_template[575]=down[2][1];
-  four_face_template[579]=down[2][2];
+  four_face_template[147]=back[0][0];
+  four_face_template[151]=back[0][1];
+  four_face_template[155]=back[0][2];
+  four_face_template[359]=back[1][0];
+  four_face_template[363]=back[1][1];
+  four_face_template[367]=back[1][2];
+  four_face_template[571]=back[2][0];
+  four_face_template[575]=back[2][1];
+  four_face_template[579]=back[2][2];
   std::cout<<four_face_template;
 
   //change template colors to down face's colors

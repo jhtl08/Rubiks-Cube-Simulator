@@ -34,7 +34,8 @@ class RubiksCube
     "             | g | h | i |\n"
     "             |   |   |   |\n"
     "             -------------\n";
-
+  
+    //template for faces left, front, right, back
     std::string four_face_template = 
     "----------------------------------------------------\n"
     "|   |   |   ||   |   |   ||   |   |   ||   |   |   |\n"
