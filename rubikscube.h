@@ -11,33 +11,17 @@
 class Face
 {
   private:
-    std::string* sideFace = new std::string[13];
+    std::string* sideFace = new std::string[39];
   
   public:
     //default constructor
     Face();
 
     //constructor with parameter
-    Face(char color);
+    Face(char color, char color1, char color2, char color3, char color4, char color5);
 
     void printFace();
 };
-
-class RubiksCube
-{
-  private:
-    Face up, down, left, right, front, back;
-
-  public:
-    //default constructor
-    RubiksCube();
-
-    void printCube();
-};
-
-
-
-
 
 
 #endif

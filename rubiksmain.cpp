@@ -9,6 +9,6 @@ using namespace std;
 
 int main()
 {
-  RubiksCube rCube;
-  rCube.printCube();
+  Face display = Face('w', 'y', 'o', 'r', 'g', 'b');
+  display.printFace();
 }
