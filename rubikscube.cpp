@@ -42,17 +42,35 @@ void RubiksCube::printCube()
   {
     for (int j=0; j<3; j++)
     {
-      single_face_template[69+(j*4)+(i*108)]=up[i][j];
+      full_face_template[121+(j*4)+(i*212)]=up[i][j];
     }
   }
-  std::cout<<single_face_template;
+
 
   //change template colors to left, front, right, back colors
   for (int i=0; i<3; i++)
   {
     for (int j=0; j<3; j++)
     {
-      four_face_template[108+(j*4)+(i*212)]=left[i][j];
+      full_face_template[797+(j*4)+(i*212)]=left[i][j];
+    }
+  }
+
+
+  for (int i=0; i<3; i++)
+  {
+    for (int j=0; j<3; j++)
+    {
+      full_face_template[810+(j*4)+(i*212)]=front[i][j];
+    }
+  }
+
+  
+  for (int i=0; i<3; i++)
+  {
+    for (int j=0; j<3; j++)
+    {
+      full_face_template[823+(j*4)+(i*212)]=right[i][j];
     }
   }
 
@@ -60,35 +78,17 @@ void RubiksCube::printCube()
   {
     for (int j=0; j<3; j++)
     {
-      four_face_template[121+(j*4)+(i*212)]=front[i][j];
-    }
-  }
-
-  for (int i=0; i<3; i++)
-  {
-    for (int j=0; j<3; j++)
-    {
-      four_face_template[134+(j*4)+(i*212)]=right[i][j];
-    }
-  }
-
-  for (int i=0; i<3; i++)
-  {
-    for (int j=0; j<3; j++)
-    {
-      four_face_template[147+(j*4)+(i*212)]=back[i][j];
+      full_face_template[836+(j*4)+(i*212)]=back[i][j];
     }
   }  
-
-  std::cout<<four_face_template;
 
   //change template colors to down face's colors
   for (int i=0; i<3; i++)
   {
     for (int j=0; j<3; j++)
     {
-      single_face_template[69+(j*4)+(i*108)]=down[i][j];
+      full_face_template[1499+(j*4)+(i*212)]=down[i][j];
     }
-  }
-  std::cout<<single_face_template;
+  }  
+ std::cout<<full_face_template;
 }
