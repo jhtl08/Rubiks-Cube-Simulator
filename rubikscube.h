@@ -1,7 +1,7 @@
 //rubikscube.h
 //Kyle Coloma, Jason Lorenzo, Paolo Ong
 //ENGG 31-N
-//October 13, 2022
+//October 20, 2022
 
 #ifndef RUBIKSCUBE_H
 #define RUBIKSCUBE_H
@@ -64,13 +64,15 @@ class RubiksCube
   public:
     //default constructor
     RubiksCube();
-
+    char swap;
+    char swap2;
     void printCube();
+    void upplus();
+    void frontplus();
+    void leftplus();
+    void rightplus();
+    void backplus();
+    void downplus();
 };
-
-
-
-
-
 
 #endif
