@@ -11,4 +11,6 @@ int main()
 {
   Face display = Face('w', 'y', 'o', 'r', 'g', 'b');
   display.printFace();
+
+  system("pause");
 }

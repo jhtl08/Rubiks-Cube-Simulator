@@ -20,7 +20,16 @@ class Face
     //constructor with parameter
     Face(char color, char color1, char color2, char color3, char color4, char color5);
 
+    int swap;
+    int swap2;
+
     void printFace();
+    void upplus();
+    void frontplus();
+    void leftplus();
+    void rightplus();
+    void backplus();
+    void downplus();
 };
 
 
