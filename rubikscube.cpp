@@ -346,9 +346,9 @@ void RubiksCube::downplus()
   */
 
  //Rotation of affected areas from face-to-face
- for (int x; x < 3; x++)
+ for (int x = 0; x < 3; x++)
   {
-    int PlaceHolder [2][2];
+    char PlaceHolder [2][2];
     PlaceHolder [0][x] = back[2][x]; // PlaceHolder for Back
     back[2][x] = left[2][x]; // Left to Back
     left[2][x] = front[2][x]; // Front to Left
@@ -362,9 +362,9 @@ void RubiksCube::upminus()
 {
 
   //Rotation of affected areas from face-to-face
-  for (int x; x < 3; x++)
+  for (int x = 0; x < 3; x++)
   {
-    int PlaceHolder [2][2];
+    char PlaceHolder [2][2];
     PlaceHolder [0][x] = back[0][x]; // Place Holder for Back
     back[0][x] = left[0][x]; // Left to Back
     left[0][x] = front[0][x]; // Front to Left
