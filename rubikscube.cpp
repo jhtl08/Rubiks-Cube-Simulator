@@ -113,6 +113,7 @@ void RubiksCube::upplus()
 
   //Turning the affected faces (NOTE: I change each affected piece individually so that I don't have to initialize more than 2 swap values.
   //Feel free to change if you want.
+  
   swap = front[0][2];
   front[0][2] = left[0][2];
   left[0][2] = back[0][2];
@@ -133,6 +134,8 @@ void RubiksCube::upplus()
   swap2 = right[0][0];
   right[0][0] = swap;
   back[0][0] = swap2;
+  
+
 }
 
 void RubiksCube::frontplus()
@@ -318,7 +321,8 @@ void RubiksCube::downplus()
   down[2][1] = swap;
   down[1][2] = swap2;
 
-  //Turning the affected faces 
+  //Turning the affected faces
+  /*
   swap = left[2][0];
   left[2][0] = front[2][0];
   front[2][0] = right[2][0];
@@ -339,4 +343,33 @@ void RubiksCube::downplus()
   swap2 = back[2][2];
   back[2][2] = swap;
   right[2][2] = swap2;
+  */
+
+ //Rotation of affected areas from face-to-face
+ for (int x; x < 3; x++)
+  {
+    int PlaceHolder [2][2];
+    PlaceHolder [0][x] = back[2][x]; // PlaceHolder for Back
+    back[2][x] = left[2][x]; // Left to Back
+    left[2][x] = front[2][x]; // Front to Left
+    front[2][x] = right[2][x]; // Right to Front
+    right[2][x] = PlaceHolder[0][x]; // Back to Right
+  }
+
+}
+
+void RubiksCube::upminus()
+{
+
+  //Rotation of affected areas from face-to-face
+  for (int x; x < 3; x++)
+  {
+    int PlaceHolder [2][2];
+    PlaceHolder [0][x] = back[0][x]; // Place Holder for Back
+    back[0][x] = left[0][x]; // Left to Back
+    left[0][x] = front[0][x]; // Front to Left
+    front[0][x] = right[0][x]; // Right to Front
+    right[0][x] = PlaceHolder[0][x]; // Back to Right
+  }
+
 }

@@ -73,6 +73,8 @@ class RubiksCube
     void rightplus();
     void backplus();
     void downplus();
+
+    void upminus();
 };
 
 #endif
