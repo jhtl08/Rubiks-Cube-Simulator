@@ -11,13 +11,13 @@
 class RubiksCube
 {
   private:
-    //allocate memory for array of pointers to arrays (columns)
-    char** up = new char*[3];
-    char** left = new char*[3];
-    char** front = new char*[3];
-    char** right = new char*[3];
-    char** back = new char*[3];
-    char** down = new char*[3];
+    //declare 2D arrays for faces
+    char** up;
+    char** left;
+    char** front;
+    char** right;
+    char** back;
+    char** down;
 
     //template for faces left, front, right, back
     std::string full_face_template = 
@@ -64,17 +64,40 @@ class RubiksCube
   public:
     //default constructor
     RubiksCube();
-    char swap;
-    char swap2;
-    void printCube();
-    void upplus();
-    void frontplus();
-    void leftplus();
-    void rightplus();
-    void backplus();
-    void downplus();
 
+    void printCube();
+
+    void faceRotate(char** face, bool clockwise);
+    void rowSwap(char** face1, char** face2, char** face3, 
+    char** face4, int rowIndex);
+    void columnSwap(char** face1, char** face2, char** face3, 
+    char** face4, int columnIndex, bool toUp);
+    void rowcolumnSwap(char** face1, char** face2, char** face3, 
+    char** face4, int columnIndex, int rowIndex, bool toRight);
+    void doublefaceRotate(char** face);
+    void tworowSwap(char** face1, char** face2, int rowIndex, 
+    int oppositeIndex, bool flip);
+    void twocolumnSwap(char** face1, char** face2, int columnIndex,
+    int oppositeIndex, bool flip);
+
+    void upplus();
     void upminus();
+    void downplus();
+    void downminus();
+    void leftplus();
+    void leftminus();
+    void rightplus();
+    void rightminus();
+    void frontplus();
+    void frontminus();
+    void backplus();
+    void backminus();
+    void uptwo();
+    void downtwo();
+    void lefttwo();
+    void righttwo();
+    void fronttwo();
+    void backtwo();
 };
 
 #endif

@@ -9,51 +9,107 @@ using namespace std;
 
 int main()
 {
-  RubiksCube rCube=RubiksCube();
+  RubiksCube rCube;
 
   rCube.printCube();
 
 while(true)
 {
-  string rotation;
+  string user_command;
   cout << "> ";
-  cin >> rotation;
+  cin >> user_command;
   
-  if (rotation == "u-")
+  if (user_command == "u-")
   {
-    rCube.upminus(); // with simplification
+    rCube.upminus();
   }
-  if (rotation == "u+")
+  else if (user_command == "u+")
   {
     rCube.upplus();
   }
-  if (rotation == "l+")
+  else if (user_command == "u2")
+  {
+    rCube.uptwo();
+  }
+  else if (user_command == "d+")
+  {
+    rCube.downplus();
+  }
+  else if (user_command == "d-")
+  {
+    rCube.downminus();
+  }  
+  else if (user_command == "d2")
+  {
+    rCube.downtwo();
+  }
+  else if (user_command == "l+")
   {
     rCube.leftplus();
   }
-  if (rotation == "f+")
+  else if (user_command == "l-")
   {
-    rCube.frontplus();
+    rCube.leftminus();
   }
-  if (rotation == "r+")
+  else if (user_command == "l2")
+  {
+    rCube.lefttwo();
+  }
+  else if (user_command == "r+")
   {
     rCube.rightplus();
   }
-  if (rotation == "b+")
+  else if (user_command == "r-")
+  {
+    rCube.rightminus();
+  }
+  else if (user_command == "r2")
+  {
+    rCube.righttwo();
+  }
+  else if (user_command == "f+")
+  {
+    rCube.frontplus();
+  }
+  else if (user_command == "f-")
+  {
+    rCube.frontminus();
+  }
+  else if (user_command == "f2")
+  {
+    rCube.fronttwo();
+  }
+  else if (user_command == "b+")
   {
     rCube.backplus();
   }
-  if (rotation == "d+")
+  else if (user_command == "b-")
   {
-    rCube.downplus(); // with simplification
+    rCube.backminus();
   }
-  
+  else if (user_command == "b2")
+  {
+    rCube.backtwo();
+  }
+  else if (user_command=="help")
+  {
+    cout << "InstructionsInstructionsInstructionsInstructions"<<endl; //put instructions here
+    continue;
+  }
+  else if (user_command == "exit")
+  {
+    cout << "Thanks for playing with our Rubik's Cube!"<<endl;
+    break;
+  }
+  else
+  {
+    cout<< "Invalid input. Enter help for the list of valid inputs."<<endl;
+    continue;
+  }
 
-  /*Configuration of these 6 turns in this specific order has been
-  /confirmed correct using an online rubiks cube simulator*/
   rCube.printCube();
   cin.clear();
 }
 
-  system("pause");
+  return 0;
 }

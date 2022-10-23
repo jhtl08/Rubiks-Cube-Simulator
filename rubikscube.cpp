@@ -7,9 +7,18 @@
 
 //class Face members
 
+//default constructor
 RubiksCube::RubiksCube()
 {
-  //allocate memory for the arrays pointed at (rows)
+  //allocate memory for array of pointers to arrays (rows)
+    up = new char*[3];
+    left = new char*[3];
+    front = new char*[3];
+    right = new char*[3];
+    back = new char*[3];
+    down = new char*[3];
+
+  //allocate memory for the arrays pointed at (columns)
   for(int i = 0; i < 3; i++)
   {
     up[i] = new char[3];
@@ -26,15 +35,16 @@ RubiksCube::RubiksCube()
     for(int j=0; j<3; j++)
     {
       up[i][j]='w';
-      left[i][j]='b';
-      front[i][j]='o';
-      right[i][j]='g';
-      back[i][j]='r';
+      left[i][j]='o';
+      front[i][j]='g';
+      right[i][j]='r';
+      back[i][j]='b';
       down[i][j]='y';
     }
   }
 }
 
+//display function
 void RubiksCube::printCube()
 {
   //change template colors to up face's colors
@@ -93,283 +103,361 @@ void RubiksCube::printCube()
  std::cout<<full_face_template;
 }
 
-void RubiksCube::upplus()
-{//oh dear...
-  //Turning the corner pieces of the main face
-  swap = up[2][0];
-  up[2][0] = up[0][0];
-  up[0][0] = up[0][2];
-  swap2 = up[2][2];
-  up[2][2] = swap;
-  up[0][2] = swap2;
-
-  //Turning the outer-middle pieces of the main face
-  swap = up[1][0];
-  up[1][0] = up[0][1];
-  up[0][1] = up[1][2];
-  swap2 = up[2][1];
-  up[2][1] = swap;
-  up[1][2] = swap2;
-
-  //Turning the affected faces (NOTE: I change each affected piece individually so that I don't have to initialize more than 2 swap values.
-  //Feel free to change if you want.
-  
-  swap = front[0][2];
-  front[0][2] = left[0][2];
-  left[0][2] = back[0][2];
-  swap2 = right[0][2];
-  right[0][2] = swap;
-  back[0][2] = swap2;
-
-  swap = front[0][1];
-  front[0][1] = left[0][1];
-  left[0][1] = back[0][1];
-  swap2 = right[0][1];
-  right[0][1] = swap;
-  back[0][1] = swap2;
-
-  swap = front[0][0];
-  front[0][0] = left[0][0];
-  left[0][0] = back[0][0];
-  swap2 = right[0][0];
-  right[0][0] = swap;
-  back[0][0] = swap2;
-  
-
-}
-
-void RubiksCube::frontplus()
+//Functions to perform single face rotation and swapping
+//to be used for the actual rotation functions
+void RubiksCube::faceRotate(char** face, bool clockwise)
 {
-  //Turning the corner pieces of the main face
-  swap = front[2][0];
-  front[2][0] = front[0][0];
-  front[0][0] = front[0][2];
-  swap2 = front[2][2];
-  front[2][2] = swap;
-  front[0][2] = swap2;
-
-  //Turning the outer-middle pieces of the main face
-  swap = front[1][0];
-  front[1][0] = front[0][1];
-  front[0][1] = front[1][2];
-  swap2 = front[2][1];
-  front[2][1] = swap;
-  front[1][2] = swap2;
-
-  //Turning the affected faces 
-  swap = left[0][2];
-  left[0][2] = up[2][2];
-  up[2][2] = right[2][0];
-  swap2 = down[0][0];
-  down[0][0] = swap;
-  right[2][0] = swap2;
-
-  swap = left[1][2];
-  left[1][2] = up[2][1];
-  up[2][1] = right[1][0];
-  swap2 = down[0][1];
-  down[0][1] = swap;
-  right[1][0] = swap2;
-
-  swap = left[2][2];
-  left[2][2] = up[2][0];
-  up[2][0] = right[0][0];
-  swap2 = down[0][2];
-  down[0][2] = swap;
-  right[0][0] = swap2;
-}
-
-void RubiksCube::leftplus()
-{
-
-  //Turning the corner pieces of the main face
-  swap = left[2][0];
-  left[2][0] = left[0][0];
-  left[0][0] = left[0][2];
-  swap2 = left[2][2];
-  left[2][2] = swap;
-  left[0][2] = swap2;
-
-  //Turning the outer-middle pieces of the main face
-  swap = left[1][0];
-  left[1][0] = left[0][1];
-  left[0][1] = left[1][2];
-  swap2 = left[2][1];
-  left[2][1] = swap;
-  left[1][2] = swap2;
-
-  //Turning the affected faces 
-  swap = back[2][2];
-  back[2][2] = up[0][0];
-  up[0][0] = front[0][0];
-  swap2 = down[0][0];
-  down[0][0] = swap;
-  front[0][0] = swap2;
-
-  swap = back[1][2];
-  back[1][2] = up[1][0];
-  up[1][0] = front[1][0];
-  swap2 = down[1][0];
-  down[1][0] = swap;
-  front[1][0] = swap2;
-
-  swap = back[0][2];
-  back[0][2] = up[2][0];
-  up[2][0] = front[2][0];
-  swap2 = down[2][0];
-  down[2][0] = swap;
-  front[2][0] = swap2;
-}
-
-void RubiksCube::rightplus()
-{
-  //Turning the corner pieces of the main face
-  swap = right[2][0];
-  right[2][0] = right[0][0];
-  right[0][0] = right[0][2];
-  swap2 = right[2][2];
-  right[2][2] = swap;
-  right[0][2] = swap2;
-
-  //Turning the outer-middle pieces of the main face
-  swap = right[1][0];
-  right[1][0] = right[0][1];
-  right[0][1] = right[1][2];
-  swap2 = right[2][1];
-  right[2][1] = swap;
-  right[1][2] = swap2;
-
-  //Turning the affected faces 
-  swap = front[2][2];
-  front[2][2] = up[2][2];
-  up[2][2] = back[0][0];
-  swap2 = down[2][2];
-  down[2][2] = swap;
-  back[0][0] = swap2;
-
-  swap = front[1][2];
-  front[1][2] = up[1][2];
-  up[1][2] = back[1][0];
-  swap2 = down[1][2];
-  down[1][2] = swap;
-  back[1][0] = swap2;
-
-  swap = front[0][2];
-  front[0][2] = up[0][2];
-  up[0][2] = back[2][0];
-  swap2 = down[0][2];
-  down[0][2] = swap;
-  back[2][0] = swap2;
-}
-
-void RubiksCube::backplus()
-{
-  //Turning the corner pieces of the main face
-  swap = back[2][0];
-  back[2][0] = back[0][0];
-  back[0][0] = back[0][2];
-  swap2 = back[2][2];
-  back[2][2] = swap;
-  back[0][2] = swap2;
-
-  //Turning the outer-middle pieces of the main face
-  swap = back[1][0];
-  back[1][0] = back[0][1];
-  back[0][1] = back[1][2];
-  swap2 = back[2][1];
-  back[2][1] = swap;
-  back[1][2] = swap2;
-
-  //Turning the affected faces 
-  swap = right[2][2];
-  right[2][2] = up[0][2];
-  up[0][2] = left[0][0];
-  swap2 = down[2][0];
-  down[2][0] = swap;
-  left[0][0] = swap2;
-
-  swap = right[1][2];
-  right[1][2] = up[0][1];
-  up[0][1] = left[1][0];
-  swap2 = down[2][1];
-  down[2][1] = swap;
-  left[1][0] = swap2;
-
-  swap = right[0][2];
-  right[0][2] = up[0][0];
-  up[0][0] = left[2][0];
-  swap2 = down[2][2];
-  down[2][2] = swap;
-  left[2][0] = swap2;
-}
-
-void RubiksCube::downplus()
-{
-  //Turning the corner pieces of the main face
-  swap = down[2][0];
-  down[2][0] = down[0][0];
-  down[0][0] = down[0][2];
-  swap2 = down[2][2];
-  down[2][2] = swap;
-  down[0][2] = swap2;
-
-  //Turning the outer-middle pieces of the main face
-  swap = down[1][0];
-  down[1][0] = down[0][1];
-  down[0][1] = down[1][2];
-  swap2 = down[2][1];
-  down[2][1] = swap;
-  down[1][2] = swap2;
-
-  //Turning the affected faces
-  /*
-  swap = left[2][0];
-  left[2][0] = front[2][0];
-  front[2][0] = right[2][0];
-  swap2 = back[2][0];
-  back[2][0] = swap;
-  right[2][0] = swap2;
-
-  swap = left[2][1];
-  left[2][1] = front[2][1];
-  front[2][1] = right[2][1];
-  swap2 = back[2][1];
-  back[2][1] = swap;
-  right[2][1] = swap2;
-
-  swap = left[2][2];
-  left[2][2] = front[2][2];
-  front[2][2] = right[2][2];
-  swap2 = back[2][2];
-  back[2][2] = swap;
-  right[2][2] = swap2;
-  */
-
- //Rotation of affected areas from face-to-face
- for (int x = 0; x < 3; x++)
+  char temp;
+  if (clockwise)
   {
-    char PlaceHolder [2][2];
-    PlaceHolder [0][x] = back[2][x]; // PlaceHolder for Back
-    back[2][x] = left[2][x]; // Left to Back
-    left[2][x] = front[2][x]; // Front to Left
-    front[2][x] = right[2][x]; // Right to Front
-    right[2][x] = PlaceHolder[0][x]; // Back to Right
+    //rotate corner pieces clockwise
+    temp = face[2][0];
+    face[2][0] = face[2][2];
+    face[2][2] = face[0][2];
+    face[0][2] = face[0][0];
+    face[0][0] = temp;
+
+    //rotate middle pieces clockwise
+    temp = face[1][0];
+    face[1][0] = face[2][1];
+    face[2][1] = face[1][2];
+    face[1][2] = face[0][1];
+    face[0][1] = temp;  
+  }
+  else
+  {
+    //rotate corner pieces counterclockwise
+    temp = face[2][0];
+    face[2][0] = face[0][0];
+    face[0][0] = face[0][2];
+    face[0][2] = face[2][2];
+    face[2][2] = temp;
+
+    //rotate middle pieces counterclockwise
+    temp = face[1][0];
+    face[1][0] = face[0][1];
+    face[0][1] = face[1][2];
+    face[1][2] = face[2][1];
+    face[2][1] = temp;
+  }
+}
+
+void RubiksCube::rowSwap(char** face1, char** face2, 
+char** face3, char** face4, int rowIndex)
+{
+  char* temp= new char[3];
+  temp = face1[rowIndex];
+  face1[rowIndex] = face2[rowIndex];
+  face2[rowIndex] = face3[rowIndex];
+  face3[rowIndex] = face4[rowIndex];
+  face4[rowIndex] = temp;
+}
+
+void RubiksCube::columnSwap(char** face1, char** face2, 
+char** face3, char** face4, int columnIndex, bool toUp)
+{
+  char temp;
+  int oppositeIndex=1;
+  if (columnIndex==2)
+  {
+    oppositeIndex=0;
+  }
+  else if (columnIndex==0)
+  {
+    oppositeIndex=2;
   }
 
+  if (toUp)
+  {
+    for(int i=0; i<3; i++)
+    {
+      temp = face1[0+i][columnIndex];
+      face1[0+i][columnIndex] = face4[0+i][columnIndex];
+      face4[0+i][columnIndex] = face3[2-i][oppositeIndex];
+      face3[2-i][oppositeIndex] = face2[0+i][columnIndex];
+      face2[0+i][columnIndex] = temp;
+    }
+  }
+  else
+  {
+    for(int i=0; i<3; i++)
+    {
+      temp = face1[0+i][columnIndex];
+      face1[0+i][columnIndex] = face2[0+i][columnIndex];
+      face2[0+i][columnIndex] = face3[2-i][oppositeIndex];
+      face3[2-i][oppositeIndex] = face4[0+i][columnIndex];
+      face4[0+i][columnIndex] = temp;
+    }
+  }
+}
+
+void RubiksCube::rowcolumnSwap(char** face1, char** face2, char** 
+face3, char** face4, int columnIndex, int rowIndex, bool toRight)
+{
+  char* temp = new char[3];
+  char* face2asRow = new char[3];
+  char* face4asRow = new char[3];
+  int oppCol=1;
+  int oppRow=1;
+  if (columnIndex==0)
+  {
+    oppCol=2;
+  }
+  else if (columnIndex==2)
+  {
+    oppCol=0;
+  }
+  if (rowIndex==0)
+  {
+    oppRow=2;
+  }
+  else if (rowIndex==2)
+  {
+    oppRow=0;
+  }
+
+  if (toRight)
+  {
+    //convert the columns to lists like face1 and face4's rows
+    for (int i=0; i<3; i++)
+    {
+      face2asRow[i] = face2[2-i][columnIndex];
+    }
+    for (int i=0; i<3; i++)
+    {
+      face4asRow[i] = face4[2-i][oppCol];
+    }
+
+    //swapping the rows
+    temp = face1[rowIndex];
+    face1[rowIndex] = face4asRow;
+    face4asRow = face3[oppRow];
+    face3[oppRow] = face2asRow;
+    face2asRow = temp;
+
+    //transfer back to column
+    for (int i=0; i<3; i++)
+    {
+      face2[i][columnIndex] = face2asRow[i];
+    }
+    for (int i=0; i<3; i++)
+    {
+      face4[i][oppCol] = face4asRow[i];
+    }
+  }
+  else
+  {
+    //convert the columns to lists like face1 and face4's rows
+    for (int i=0; i<3; i++)
+    {
+      face2asRow[i] = face2[i][columnIndex];
+    }
+    for (int i=0; i<3; i++)
+    {
+      face4asRow[i] = face4[i][oppCol];
+    }
+
+    temp = face1[rowIndex];
+    face1[rowIndex] = face2asRow;
+    face2asRow = face3[oppRow];
+    face3[oppRow] = face4asRow;
+    face4asRow = temp;
+
+    //transfer back to column
+    for (int i=0; i<3; i++)
+    {
+      face2[i][columnIndex] = face2asRow[2-i];
+    }
+    for (int i=0; i<3; i++)
+    {
+      face4[i][oppCol] = face4asRow[2-i];
+    }
+  }
+}
+
+void RubiksCube::doublefaceRotate(char** face)
+{
+  char* listTemp = new char[3];
+  char charTemp;
+
+  //rotate first and last row
+  for (int i=0; i<3; i++)
+  {
+    listTemp[2-i]=face[0][i];
+    face[0][i]=face[2][2-i];
+  }
+  face[2]=listTemp;
+
+  //swap remaining middle pieces
+  charTemp = face[1][0];
+  face[1][0]=face[1][2];
+  face[1][2]=charTemp;
+}
+
+void RubiksCube::tworowSwap(char** face1, char** face2, 
+int rowIndex, int oppositeIndex, bool flip)
+{
+  if (flip)
+  {
+    char temp;
+    temp = face1[oppositeIndex][0];
+    face1[oppositeIndex][0] = face2[rowIndex][2];
+    face2[rowIndex][2] = temp;
+    temp = face1[oppositeIndex][2];
+    face1[oppositeIndex][2] = face2[rowIndex][0];
+    face2[rowIndex][0] = temp;
+    temp = face1[oppositeIndex][1];
+    face1[oppositeIndex][1] = face2[rowIndex][1];
+    face2[rowIndex][1] = temp;
+  }
+  else
+  {
+    char* temp = new char[3];
+    temp = face1[rowIndex];
+    face1[rowIndex] = face2[oppositeIndex];
+    face2[oppositeIndex] = temp;
+  }
+}
+
+void RubiksCube::twocolumnSwap(char** face1, char** face2, 
+int columnIndex, int oppositeIndex, bool flip)
+{
+  char temp;
+  
+  if (flip)
+  {
+    temp = face1[0][oppositeIndex];
+    face1[0][oppositeIndex] = face2[2][columnIndex];
+    face2[2][columnIndex] = temp;
+    temp = face1[2][oppositeIndex];
+    face1[2][oppositeIndex] = face2[0][columnIndex];
+    face2[0][columnIndex] = temp;
+  }
+  else
+  {
+    temp = face1[0][columnIndex];
+    face1[0][columnIndex] = face2[0][oppositeIndex];
+    face2[0][oppositeIndex] = temp;
+    temp = face1[2][columnIndex];
+    face1[2][columnIndex] = face2[2][oppositeIndex];
+    face2[2][oppositeIndex] = temp;
+  }
+  temp = face1[1][oppositeIndex];
+  face1[1][oppositeIndex] = face2[1][columnIndex];
+  face2[1][columnIndex] = temp;
+}
+
+//Rotation Functions
+void RubiksCube::upplus()
+{
+  faceRotate(up, false);
+  rowSwap(left, back, right, front, 0);
 }
 
 void RubiksCube::upminus()
 {
+  faceRotate(up, true);
+  rowSwap(front, right, back, left, 0);
+}
 
-  //Rotation of affected areas from face-to-face
-  for (int x = 0; x < 3; x++)
-  {
-    char PlaceHolder [2][2];
-    PlaceHolder [0][x] = back[0][x]; // Place Holder for Back
-    back[0][x] = left[0][x]; // Left to Back
-    left[0][x] = front[0][x]; // Front to Left
-    front[0][x] = right[0][x]; // Right to Front
-    right[0][x] = PlaceHolder[0][x]; // Back to Right
-  }
+void RubiksCube::downplus()
+{
+  faceRotate(down, false);
+  rowSwap(front, right, back, left, 2);
+}
 
+void RubiksCube::downminus()
+{
+  faceRotate(down, true);
+  rowSwap(left, back, right, front, 2);
+}
+
+void RubiksCube::leftplus()
+{
+  faceRotate(left, false);
+  columnSwap(front, up, back, down, 0, true);
+}
+
+void RubiksCube::leftminus()
+{
+  faceRotate(left, true);
+  columnSwap(front, up, back, down, 0, false);
+}
+
+void RubiksCube::rightplus()
+{
+  faceRotate(right, false);
+  columnSwap(front, up, back, down, 2, false);
+}
+
+void RubiksCube::rightminus()
+{
+  faceRotate(right, true);
+  columnSwap(front, up, back, down, 2, true);
+}
+
+void RubiksCube::frontminus()
+{
+  faceRotate(front, true);
+  rowcolumnSwap(up, right, down, left, 0, 2, true);
+}
+
+void RubiksCube::frontplus()
+{
+  faceRotate(front, false);
+  rowcolumnSwap(up, right, down, left, 0, 2, false);
+}
+
+void RubiksCube::backplus()
+{
+  faceRotate(back, false);
+  rowcolumnSwap(up, left, down, right, 0, 2, false);
+}
+
+void RubiksCube::backminus()
+{
+  faceRotate(back, true);
+  rowcolumnSwap(up, left, down, right, 0, 2, true);
+}
+
+void RubiksCube::uptwo()
+{
+  doublefaceRotate(up);
+  tworowSwap(left, right, 0, 0, false);
+  tworowSwap(front, back, 0, 0, false);
+}
+
+void RubiksCube::downtwo()
+{
+  doublefaceRotate(down);
+  tworowSwap(left, right, 2, 2, false);
+  tworowSwap(front, back, 2, 2, false);
+}
+
+void RubiksCube::lefttwo()
+{
+  doublefaceRotate(left);
+  twocolumnSwap(back, front, 0, 2, true);
+  twocolumnSwap(up, down, 0, 0, false);
+}
+
+void RubiksCube::righttwo()
+{
+  doublefaceRotate(right);
+  twocolumnSwap(back, front, 2, 0, true);
+  twocolumnSwap(up, down, 2, 2, false);
+}
+
+void RubiksCube::fronttwo()
+{
+  doublefaceRotate(front);
+  tworowSwap(up, down, 0, 2, true);
+  twocolumnSwap(left, right, 0, 2, true);
+}
+
+void RubiksCube::backtwo()
+{
+  doublefaceRotate(back);
+  tworowSwap(up, down, 2, 0, true);
+  twocolumnSwap(left, right, 2, 0, true);
 }
