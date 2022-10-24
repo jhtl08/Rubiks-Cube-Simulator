@@ -41,7 +41,7 @@ RubiksCube::RubiksCube()
       back[i][j]='b';
       down[i][j]='y';
     }
-  }
+  } 
 }
 
 //display function
@@ -460,4 +460,9 @@ void RubiksCube::backtwo()
   doublefaceRotate(back);
   tworowSwap(up, down, 2, 0, true);
   twocolumnSwap(left, right, 2, 0, true);
+}
+
+std::string RubiksCube::get_template()
+{
+  return full_face_template;
 }

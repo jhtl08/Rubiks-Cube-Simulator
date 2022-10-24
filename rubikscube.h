@@ -7,6 +7,9 @@
 #define RUBIKSCUBE_H
 
 #include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
 
 class RubiksCube
 {
@@ -33,7 +36,7 @@ class RubiksCube
   "             |   |   |   |   front                  \n"
   "             | x | x | x |   /                      \n"
   "             |   |   |   |  /                       \n"
-  "  left       ------------- /   right       back     \n"
+  "  left       ------------- /   right        back    \n"
   "----------------------------------------------------\n"
   "|   |   |   ||   |   |   ||   |   |   ||   |   |   |\n"
   "| x | x | x || x | x | x || x | x | x || x | x | x |\n"
@@ -53,7 +56,7 @@ class RubiksCube
   "             |   |   |   |                          \n"
   "             -------------                          \n"
   "             |   |   |   |                          \n"
-  "             | x | x | x |    down                  \n"
+  "             | x | x | x | down                     \n"
   "             |   |   |   |                          \n"
   "             -------------                          \n"
   "             |   |   |   |                          \n"
@@ -98,6 +101,8 @@ class RubiksCube
     void righttwo();
     void fronttwo();
     void backtwo();
+
+    std::string get_template();
 };
 
 #endif

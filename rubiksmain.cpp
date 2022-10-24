@@ -4,6 +4,7 @@
 //October 20, 2022
 
 #include "rubikscube.h"
+#include <fstream>
 
 using namespace std;
 
@@ -13,11 +14,16 @@ int main()
 
   rCube.printCube();
 
+  vector<string> store_input;
+  vector<string> store_template;
+
 while(true)
 {
   string user_command;
   cout << "> ";
   cin >> user_command;
+
+  store_input.push_back(user_command);
   
   if (user_command == "u-")
   {
@@ -117,7 +123,22 @@ while(true)
 
   rCube.printCube();
   cin.clear();
+
+  store_template.push_back(rCube.get_template());
 }
+
+
+  ofstream myFile;
+
+  myFile.open("cubelog.txt");
+
+  for(int x; x <store_input.size(); x++)
+  {
+    myFile << "> " << store_input[x] << endl;
+    myFile << store_template[x] << endl;
+  }
+
+  myFile.close();
 
   return 0;
 }
