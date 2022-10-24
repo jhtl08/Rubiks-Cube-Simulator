@@ -115,6 +115,10 @@ while(true)
     cout << "Thanks for playing with our Rubik's Cube!"<<endl;
     break;
   }
+  else if (user_command == "reset")
+  {
+    rCube = RubiksCube();
+  }
   else
   {
     cout<< "Invalid input. Enter help for the list of valid inputs."<<endl;

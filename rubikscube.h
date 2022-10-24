@@ -103,6 +103,12 @@ class RubiksCube
     void backtwo();
 
     std::string get_template();
+
+    void initialize()
+    {
+      RubiksCube();
+    }
+
 };
 
 #endif

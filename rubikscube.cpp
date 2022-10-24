@@ -466,3 +466,4 @@ std::string RubiksCube::get_template()
 {
   return full_face_template;
 }
+
