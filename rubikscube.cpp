@@ -411,13 +411,13 @@ void RubiksCube::frontplus()
 void RubiksCube::backplus()
 {
   faceRotate(back, false);
-  rowcolumnSwap(up, left, down, right, 0, 2, false);
+  rowcolumnSwap(down, left, up, right, 0, 2, true);
 }
 
 void RubiksCube::backminus()
 {
   faceRotate(back, true);
-  rowcolumnSwap(up, left, down, right, 0, 2, true);
+  rowcolumnSwap(down, left, up, right, 0, 2, false);
 }
 
 void RubiksCube::uptwo()

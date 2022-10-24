@@ -93,7 +93,15 @@ while(true)
   }
   else if (user_command=="help")
   {
-    cout << "InstructionsInstructionsInstructionsInstructions"<<endl; //put instructions here
+    cout << "Input Notation: "<<endl;
+    cout << "[lowercase first letter of face][direction]" << endl;
+    cout << "Available directions: " << endl;
+    cout << "2: 180 degrees" << endl;
+    cout << "+: 90 degrees counter-clockwise" << endl;
+    cout << "-: 90 degrees clockwise" << endl;
+    cout << "Note that final command should not include brackets. " << endl;
+    cout << "ex. f+ means to turn the front face 90 degrees CCW." << endl;
+    cout << "To exit the program, type 'exit' without single quotation marks. " << endl;
     continue;
   }
   else if (user_command == "exit")
