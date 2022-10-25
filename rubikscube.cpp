@@ -142,6 +142,8 @@ void RubiksCube::faceRotate(char** face, bool clockwise)
   }
 }
 
+//Swaps affected rows of each faces to 
+//other affected row of each faces
 void RubiksCube::rowSwap(char** face1, char** face2, 
 char** face3, char** face4, int rowIndex)
 {
@@ -153,6 +155,8 @@ char** face3, char** face4, int rowIndex)
   face4[rowIndex] = temp;
 }
 
+//Swaps affected column of each faces to 
+//other affected column of each faces
 void RubiksCube::columnSwap(char** face1, char** face2, 
 char** face3, char** face4, int columnIndex, bool toUp)
 {
@@ -275,6 +279,7 @@ face3, char** face4, int columnIndex, int rowIndex, bool toRight)
   }
 }
 
+//rotates the face 180 degrees
 void RubiksCube::doublefaceRotate(char** face)
 {
   char* listTemp = new char[3];
@@ -294,6 +299,7 @@ void RubiksCube::doublefaceRotate(char** face)
   face[1][2]=charTemp;
 }
 
+//rotates the affected rows of each faces in 180 degrees rotation
 void RubiksCube::tworowSwap(char** face1, char** face2, 
 int rowIndex, int oppositeIndex, bool flip)
 {
@@ -319,6 +325,7 @@ int rowIndex, int oppositeIndex, bool flip)
   }
 }
 
+//rotates the affected column of each faces in 180 degrees rotation
 void RubiksCube::twocolumnSwap(char** face1, char** face2, 
 int columnIndex, int oppositeIndex, bool flip)
 {
@@ -350,86 +357,207 @@ int columnIndex, int oppositeIndex, bool flip)
 //Rotation Functions
 void RubiksCube::upplus()
 {
-  faceRotate(up, false);
+  faceRotate(up, false); 
+  //up - up face rotation
+  //false - 90 degrees counterclockwise rotation
+
   rowSwap(left, back, right, front, 0);
+  //left, back, right, front - affected faces when up face is rotated
+  //rowswap function - only the rows of affected faces are rotated
+  //0 - only the 1st row of the affected faces are rotated
 }
 
 void RubiksCube::upminus()
 {
   faceRotate(up, true);
+  //up - up face rotation
+  //true - 90 degrees clockwise rotation
+
   rowSwap(front, right, back, left, 0);
+  //front, right, back, left - affected faces when up face is rotated
+  //rowswap function - only the rows of affected faces are rotated
+  //0 - only the 1st row of the affected faces are rotated
 }
 
 void RubiksCube::downplus()
 {
   faceRotate(down, false);
+  //down - down face rotation
+  //false - 90 degrees counterclockwise rotation
+
   rowSwap(front, right, back, left, 2);
+  //front, right, back, left - affected faces when down face is 
+  // rotated
+  //rowSwap function - only the rows of affected faces are rotated
+  //2 - only the 3rd row of the affected faces are rotated
 }
 
 void RubiksCube::downminus()
 {
   faceRotate(down, true);
+  //down - down face rotation
+  //true - 90 degrees clockwise rotation
+
   rowSwap(left, back, right, front, 2);
+  //left, back, right, front - affected faces when down face is 
+  // rotated
+  //rowSwap function - only the rows of affected faces are rotated
+  //2 - only the 3rd row of the affected faces are rotated
 }
 
 void RubiksCube::leftplus()
 {
   faceRotate(left, false);
+  //left - left face rotation
+  //false - 90 degrees counterclockwise rotation
+
   columnSwap(front, up, back, down, 0, true);
+  //front, up, back, down - affected faces when left face is rotated
+  //columnSwap function - only the column of affected faces are 
+  // rotated
+  //0 - most of the affected areas lies on the 1st column
+  //3rd affected face (back) has its affected column at its 
+  // 3rd column
+  //true - affected parts of the faces rotates counterclockwise with
+  // left face
+
 }
 
 void RubiksCube::leftminus()
 {
   faceRotate(left, true);
+  //left - left face rotation
+  //true - 90 degrees clockwise rotation
+
   columnSwap(front, up, back, down, 0, false);
+  //front, up, back, down - affected faces when left face is rotated
+  //columnSwap function - only the column of affected faces are 
+  // rotated
+  //0 - most of the affected areas lies on the 1st column
+  //3rd affected face (back) has its affected column at its 
+  // 3rd column
+  //false - affected parts of the faces rotates clockwise with 
+  // left face
 }
 
 void RubiksCube::rightplus()
 {
   faceRotate(right, false);
+  //right - right face rotation
+  //false - 90 degrees counterclockwise rotation
+
   columnSwap(front, up, back, down, 2, false);
+  //front, up, back, down - affected faces when right face is rotated
+  //columnSwap function - only the column of affected faces are 
+  // rotated
+  //2 - most of the affected areas lies on the 3rd column
+  //3rd affected face (back) has its affected column at its 
+  // 1st column
+  //false - affected parts of the faces rotates counterclockwise with
+  // right face
+
 }
 
 void RubiksCube::rightminus()
 {
   faceRotate(right, true);
+  //right - right face rotation
+  //true - 90 degrees clockwise rotation
+
   columnSwap(front, up, back, down, 2, true);
+  //front, up, back, down - affected faces when right face is rotated
+  //columnSwap function - only the column of affected faces are rotated
+  //2 - most of the affected areas lies on the 3rd column
+  //3rd affected face (back) has its affected column at its 
+  // 1st column
+  //true - affected parts of the faces rotates clockwise with 
+  // right face
 }
 
 void RubiksCube::frontminus()
 {
   faceRotate(front, true);
+  //front - front face rotation
+  //true - 90 degrees clockwise rotation
+
   rowcolumnSwap(up, right, down, left, 0, 2, true);
+  //up, right, down, left - affected faces when front face is rotated
+  //rowcolumnSwap function - both row and column of the affected 
+  // faces are rotated. Up & Down - Rows; Left & Right - Column
+  //0 - 1st Column of the Left & Right face are affected
+  //2 - 3rd Row of the Up & Down face are affected
+  //true - affected parts of the faces rotates clockwise with 
+  // front face
 }
 
 void RubiksCube::frontplus()
 {
   faceRotate(front, false);
+  //front - front face rotation
+  //false - 90 degrees counterclockwise rotation
+
   rowcolumnSwap(up, right, down, left, 0, 2, false);
+  //up, right, down, left - affected faces when front face is rotated
+  //rowcolumnSwap function - both row and column of the affected 
+  // faces are rotated. Up & Down - Rows; Left & Right - Column
+  //0 - 1st Column of the Left & Right face are affected
+  //2 - 3rd Row of the Up & Down face are affected
+  //false - affected parts of the faces rotates counterclockwise with
+  // front face
 }
 
 void RubiksCube::backplus()
 {
   faceRotate(back, false);
+  //back - back face rotation
+  //false - 90 degrees counterclockwise rotation
+
   rowcolumnSwap(down, left, up, right, 0, 2, true);
+  //down, left, up, right - affected faces when back face is rotated
+  //rowcolumnSwap function - both row and column of the affected 
+  // faces are rotated. Up & Down - Rows; Left & Right - Column
+  //0 - 1st Column of the Left face is affected 
+  // while 3rd column of right face is affected
+  //2 - 3rd Row of the Down face is affected
+  // while 1st Row of the Up face is affected
+  //true - affected parts of the faces rotates counterclockwise with
+  // back face
 }
 
 void RubiksCube::backminus()
 {
   faceRotate(back, true);
+  //back - back face rotation
+  //true - 90 degrees clockwise rotation
+
   rowcolumnSwap(down, left, up, right, 0, 2, false);
+  //down, left, up, right - affected faces when back face is rotated
+  //rowcolumnSwap function - both row and column of the affected 
+  // faces are rotated. Up & Down - Rows; Left & Right - Column
+  //0 - 1st Column of the Left face is affected 
+  // while 3rd column of right face is affected
+  //2 - 3rd Row of the Down face is affected
+  // while 1st Row of the Up face is affected
+  //false - affected parts of the faces rotates clockwise with
+  // back face
 }
 
 void RubiksCube::uptwo()
 {
   doublefaceRotate(up);
+  //up - up face 180 degree rotation
+
   tworowSwap(left, right, 0, 0, false);
+
+
   tworowSwap(front, back, 0, 0, false);
 }
 
 void RubiksCube::downtwo()
 {
   doublefaceRotate(down);
+  //down - down face 180 degree rotation
+
   tworowSwap(left, right, 2, 2, false);
   tworowSwap(front, back, 2, 2, false);
 }
@@ -437,29 +565,49 @@ void RubiksCube::downtwo()
 void RubiksCube::lefttwo()
 {
   doublefaceRotate(left);
+  //left - left face 180 degree rotation
+
   twocolumnSwap(back, front, 0, 2, true);
+  //affected parts of back & front faces are swapped
+
   twocolumnSwap(up, down, 0, 0, false);
+  //affected parts of up & down faces are swapped
 }
 
 void RubiksCube::righttwo()
 {
   doublefaceRotate(right);
+  //right - right face 180 degree rotation
+
   twocolumnSwap(back, front, 2, 0, true);
+  //affected parts of back & front faces are swapped
+  
   twocolumnSwap(up, down, 2, 2, false);
+  //affected parts of up & down faces are swapped
 }
 
 void RubiksCube::fronttwo()
 {
   doublefaceRotate(front);
+  //front - front face 180 degree rotation
+
   tworowSwap(up, down, 0, 2, true);
+  //affected parts of up & down faces are swapped
+
   twocolumnSwap(left, right, 0, 2, true);
+  //affected parts of left & right faces are swapped
 }
 
 void RubiksCube::backtwo()
 {
   doublefaceRotate(back);
+  //back - back face 180 degree rotation
+
   tworowSwap(up, down, 2, 0, true);
+  //affected parts of up & down faces are swapped
+
   twocolumnSwap(left, right, 2, 0, true);
+  //affected parts of left & right faces are swapped
 }
 
 std::string RubiksCube::get_template()
