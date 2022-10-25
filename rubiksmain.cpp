@@ -32,7 +32,7 @@ int main()
   "quotation marks. \n"
   "To reset the cube, type 'reset' without single\n"
   "quotation marks.\n"
-  "\n----------------------------------------------------\n";
+  "----------------------------------------------------\n";
 
 while(true)
 {
