@@ -104,10 +104,6 @@ class RubiksCube
 
     std::string get_template();
 
-    void initialize()
-    {
-      RubiksCube();
-    }
 
 };
 

@@ -146,7 +146,7 @@ while(true)
 
   myFile.open("cubelog.txt");
 
-  for(int x; x <store_input.size(); x++)
+  for(int x = 0; x <store_input.size(); x++)
   {
     myFile << "> " << store_input[x] << endl;
     myFile << store_template[x] << endl;
