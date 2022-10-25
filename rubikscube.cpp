@@ -466,7 +466,8 @@ void RubiksCube::rightminus()
 
   columnSwap(front, up, back, down, 2, true);
   //front, up, back, down - affected faces when right face is rotated
-  //columnSwap function - only the column of affected faces are rotated
+  //columnSwap function - only the column of affected faces are 
+  //rotated
   //2 - most of the affected areas lies on the 3rd column
   //3rd affected face (back) has its affected column at its 
   // 1st column

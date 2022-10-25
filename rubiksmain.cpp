@@ -99,18 +99,24 @@ while(true)
   }
   else if (user_command=="help")
   {
-    cout << "\n----------------------------------------------------" << endl;
+    cout << "\n----------------------------------------------------"
+    << endl;
     cout << "\nInput Notation: "<<endl;
     cout << "[lowercase first letter of face][direction]" << endl;
     cout << "\nAvailable directions: " << endl;
     cout << "2: 180 degrees" << endl;
     cout << "+: 90 degrees counter-clockwise" << endl;
     cout << "-: 90 degrees clockwise" << endl;
-    cout << "\nNote that final command should not include brackets. " << endl;
-    cout << "ex. f+ means to turn the front face 90 degrees CCW." << endl;
-    cout << "\nTo exit the program, type 'exit' without single\n quotation marks. " << endl;
-    cout << "To reset the cube, type 'reset' without single\n quotation marks." << endl;
-    cout << "\n----------------------------------------------------" << endl;
+    cout << "\nNote that final command should not include brackets."
+    << endl;
+    cout << "ex. f+ means to turn the front face 90 degrees CCW." 
+    << endl;
+    cout << "\nTo exit the program, type 'exit' without single\n" <<
+    "quotation marks. " << endl;
+    cout << "To reset the cube, type 'reset' without single\n"<<
+    "quotation marks." << endl;
+    cout << "\n----------------------------------------------------"
+    << endl;
     continue;
   }
   else if (user_command == "exit")
@@ -124,7 +130,8 @@ while(true)
   }
   else
   {
-    cout<< "Invalid input. Enter help for the list of valid inputs."<<endl;
+    cout<< "Invalid input. Enter help for the list of valid inputs."
+    <<endl;
     continue;
   }
 
