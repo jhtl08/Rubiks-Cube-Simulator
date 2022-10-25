@@ -1,14 +1,12 @@
 //rubikscube.h
 //Kyle Coloma, Jason Lorenzo, Paolo Ong
 //ENGG 31-N
-//October 20, 2022
+//October 25, 2022
 
 #ifndef RUBIKSCUBE_H
 #define RUBIKSCUBE_H
 
 #include <iostream>
-#include <vector>
-#include <string>
 #include <fstream>
 
 class RubiksCube
@@ -23,46 +21,7 @@ class RubiksCube
     char** down;
 
     //template for faces left, front, right, back
-    std::string full_face_template = 
-  "             -------------                          \n"
-  "             |   |   |   |                          \n"
-  "             | x | x | x |                          \n"
-  "             |   |   |   |                          \n"
-  "             -------------                          \n"
-  "             |   |   |   |                          \n"
-  "        up   | x | x | x |                          \n"
-  "             |   |   |   |                          \n"
-  "             -------------                          \n"
-  "             |   |   |   |   front                  \n"
-  "             | x | x | x |   /                      \n"
-  "             |   |   |   |  /                       \n"
-  "  left       ------------- /   right        back    \n"
-  "----------------------------------------------------\n"
-  "|   |   |   ||   |   |   ||   |   |   ||   |   |   |\n"
-  "| x | x | x || x | x | x || x | x | x || x | x | x |\n"
-  "|   |   |   ||   |   |   ||   |   |   ||   |   |   |\n"
-  "----------------------------------------------------\n"
-  "|   |   |   ||   |   |   ||   |   |   ||   |   |   |\n"
-  "| x | x | x || x | x | x || x | x | x || x | x | x |\n"
-  "|   |   |   ||   |   |   ||   |   |   ||   |   |   |\n"
-  "----------------------------------------------------\n"
-  "|   |   |   ||   |   |   ||   |   |   ||   |   |   |\n"
-  "| x | x | x || x | x | x || x | x | x || x | x | x |\n"
-  "|   |   |   ||   |   |   ||   |   |   ||   |   |   |\n"
-  "----------------------------------------------------\n"
-  "             -------------                          \n"
-  "             |   |   |   |                          \n"
-  "             | x | x | x |                          \n"
-  "             |   |   |   |                          \n"
-  "             -------------                          \n"
-  "             |   |   |   |                          \n"
-  "             | x | x | x | down                     \n"
-  "             |   |   |   |                          \n"
-  "             -------------                          \n"
-  "             |   |   |   |                          \n"
-  "             | x | x | x |                          \n"
-  "             |   |   |   |                          \n"
-  "             -------------                          \n";
+    std::string full_face_template;
 
   public:
     //default constructor
@@ -103,8 +62,6 @@ class RubiksCube
     void backtwo();
 
     std::string get_template();
-
-
 };
 
 #endif

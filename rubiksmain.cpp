@@ -1,7 +1,7 @@
 //rubiksmain.cpp
 //Kyle Coloma, Jason Lorenzo, Paolo Ong
 //ENGG 31-N
-//October 20, 2022
+//October 25, 2022
 
 #include "rubikscube.h"
 #include <fstream>
@@ -13,17 +13,33 @@ int main()
   RubiksCube rCube;
 
   rCube.printCube();
+  
+  ofstream myFile;
 
-  vector<string> store_input;
-  vector<string> store_template;
+  myFile.open("cubelog.txt");
+
+  string instructions = 
+  "\n----------------------------------------------------"
+  "\nInput Notation: \n"
+  "[lowercase first letter of face (f, l, b, r, u)][direction]\n"
+  "\nAvailable directions: \n"
+  "2: 180 degrees\n"
+  "+: 90 degrees counter-clockwise\n"
+  "-: 90 degrees clockwise\n"
+  "\nNote that final command should not include brackets.\n"
+  "ex. f+ means to turn the front face 90 degrees CCW.\n" 
+  "\nTo exit the program, type 'exit' without single\n"
+  "quotation marks. \n"
+  "To reset the cube, type 'reset' without single\n"
+  "quotation marks.\n"
+  "\n----------------------------------------------------\n";
 
 while(true)
 {
   string user_command;
   cout << "> ";
   cin >> user_command;
-
-  store_input.push_back(user_command);
+  myFile << "> " << user_command << endl;
   
   if (user_command == "u-")
   {
@@ -99,29 +115,14 @@ while(true)
   }
   else if (user_command=="help")
   {
-    cout << "\n----------------------------------------------------"
-    << endl;
-    cout << "\nInput Notation: "<<endl;
-    cout << "[lowercase first letter of face][direction]" << endl;
-    cout << "\nAvailable directions: " << endl;
-    cout << "2: 180 degrees" << endl;
-    cout << "+: 90 degrees counter-clockwise" << endl;
-    cout << "-: 90 degrees clockwise" << endl;
-    cout << "\nNote that final command should not include brackets."
-    << endl;
-    cout << "ex. f+ means to turn the front face 90 degrees CCW." 
-    << endl;
-    cout << "\nTo exit the program, type 'exit' without single\n" <<
-    "quotation marks. " << endl;
-    cout << "To reset the cube, type 'reset' without single\n"<<
-    "quotation marks." << endl;
-    cout << "\n----------------------------------------------------"
-    << endl;
+    cout << instructions;
+    myFile << instructions;
     continue;
   }
   else if (user_command == "exit")
   {
-    cout << "Thanks for playing with our Rubik's Cube!"<<endl;
+    cout<< "Thanks for playing with our Rubik's Cube!"<<endl;
+    myFile<< "Thanks for playing with our Rubik's Cube!"<<endl;
     break;
   }
   else if (user_command == "reset")
@@ -138,20 +139,8 @@ while(true)
   rCube.printCube();
   cin.clear();
 
-  store_template.push_back(rCube.get_template());
+  myFile<<rCube.get_template();
 }
-
-
-  ofstream myFile;
-
-  myFile.open("cubelog.txt");
-
-  for(int x = 0; x <store_input.size(); x++)
-  {
-    myFile << "> " << store_input[x] << endl;
-    myFile << store_template[x] << endl;
-  }
-
   myFile.close();
 
   return 0;
