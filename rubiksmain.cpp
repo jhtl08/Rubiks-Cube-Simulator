@@ -19,7 +19,7 @@ int main()
   myFile.open("cubelog.txt");
 
   string instructions = 
-  "\n----------------------------------------------------"
+  "----------------------------------------------------"
   "\nInput Notation: \n"
   "[lowercase first letter of face (f, l, b, r, u)][direction]\n"
   "\nAvailable directions: \n"
@@ -132,6 +132,8 @@ while(true)
   else
   {
     cout<< "Invalid input. Enter help for the list of valid inputs."
+    <<endl;
+    myFile<<"Invalid input. Enter help for the list of valid inputs."
     <<endl;
     continue;
   }
