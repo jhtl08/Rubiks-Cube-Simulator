@@ -549,9 +549,10 @@ void RubiksCube::uptwo()
   //up - up face 180 degree rotation
 
   tworowSwap(left, right, 0, 0, false);
-
+  //affected parts of left & right faces are swapped
 
   tworowSwap(front, back, 0, 0, false);
+  //affected parts of front & back faces are swapped
 }
 
 void RubiksCube::downtwo()
@@ -560,7 +561,10 @@ void RubiksCube::downtwo()
   //down - down face 180 degree rotation
 
   tworowSwap(left, right, 2, 2, false);
+  //affected parts of left & right faces are swapped
+
   tworowSwap(front, back, 2, 2, false);
+  //affected parts of front & back faces are swapped
 }
 
 void RubiksCube::lefttwo()
